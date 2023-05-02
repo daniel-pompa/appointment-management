@@ -1,6 +1,22 @@
+import { useState } from 'react';
 import { disableDatesPreviousToCurrentDate } from '../helpers/index';
 
 const Form = () => {
+  // Patient initial state
+  const [pet, setPet] = useState('');
+  const [owner, setOwner] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [symptoms, setSymptoms] = useState('');
+
+  // Function that is executed when the user submits the form
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log('Enviando formulario');
+  };
+
   return (
     <div className='md:w-1/2 lg:w-2/5 my-8'>
       <h2 className='text-2xl text-gray-600 text-center font-black uppercase'>
@@ -12,7 +28,10 @@ const Form = () => {
       </p>
 
       {/* Form */}
-      <form className='bg-white shadow-lg rounded-md mx-3 p-4'>
+      <form
+        onSubmit={handleSubmit}
+        className='bg-white shadow-lg rounded-md mx-3 p-4'
+      >
         <div className='my-4'>
           <label htmlFor='pet' className='block text-gray-600 font-bold'>
             Nombre Mascota
@@ -22,6 +41,8 @@ const Form = () => {
             type='text'
             placeholder='Nombre de la mascota'
             className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            value={pet}
+            onChange={e => setPet(e.target.value)}
           />
         </div>
 
@@ -34,6 +55,8 @@ const Form = () => {
             type='text'
             placeholder='Nombre del propietario'
             className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            value={owner}
+            onChange={e => setOwner(e.target.value)}
           />
         </div>
 
@@ -47,6 +70,8 @@ const Form = () => {
             placeholder='Teléfono de contacto'
             pattern='[0-9]{3} [0-9]{2} [0-9]{2} [0-9]{2}'
             className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            value={phone}
+            onChange={e => setPhone(e.target.value)}
           />
           <small className='text-gray-600 font-bold'>
             Formato: 648 45 67 89
@@ -62,6 +87,8 @@ const Form = () => {
             type='email'
             placeholder='Correo electrónico de contacto'
             className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
 
@@ -74,6 +101,8 @@ const Form = () => {
             type='date'
             min={disableDatesPreviousToCurrentDate()}
             className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            value={date}
+            onChange={e => setDate(e.target.value)}
           />
         </div>
 
@@ -87,6 +116,8 @@ const Form = () => {
             min='09:00'
             max='18:00'
             className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            value={time}
+            onChange={e => setTime(e.target.value)}
           />
           <small className='text-gray-600 font-bold'>
             Horario 9:00 a 18:00
@@ -101,6 +132,8 @@ const Form = () => {
             id='symptoms'
             placeholder='Descripción de los síntomas'
             className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            value={symptoms}
+            onChange={e => setSymptoms(e.target.value)}
           />
         </div>
 
