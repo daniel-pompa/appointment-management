@@ -1,3 +1,5 @@
+import { disableDatesPreviousToCurrentDate } from '../helpers/index';
+
 const Form = () => {
   return (
     <div className='md:w-1/2 lg:w-2/5 my-8'>
@@ -70,6 +72,7 @@ const Form = () => {
           <input
             id='date'
             type='date'
+            min={disableDatesPreviousToCurrentDate()}
             className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
           />
         </div>
