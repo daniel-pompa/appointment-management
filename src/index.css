@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fonts/Roboto-Regular.ttf');
+}
+
+:root {
+  --main-color: #00d8ff;
+  font-family: 'Roboto', system-ui, sans-serif;
+}
+
+.main-color {
+  color: var(--main-color);
+}
+
+.main-background-color {
+  background-color: var(--main-color);
+}
