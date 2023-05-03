@@ -17,7 +17,12 @@ function App() {
     <div className='container mx-auto'>
       <Header />
       <div className='md:flex'>
-        <Form patients={patients} setPatients={setPatients} patient={patient} />
+        <Form
+          patients={patients}
+          setPatients={setPatients}
+          patient={patient}
+          setPatient={setPatient}
+        />
         <PatientList patients={patients} setPatient={setPatient} />
       </div>
     </div>

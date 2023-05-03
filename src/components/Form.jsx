@@ -8,7 +8,7 @@ import {
 } from '../helpers';
 import Alert from './Alert';
 
-const Form = ({ patients, setPatients, patient }) => {
+const Form = ({ patients, setPatients, patient, setPatient }) => {
   // Patient initial state
   const [pet, setPet] = useState('');
   const [owner, setOwner] = useState('');
@@ -56,11 +56,25 @@ const Form = ({ patients, setPatients, patient }) => {
       date: formattedDate(date), // Change date format
       time,
       symptoms,
-      id: generateID(),
     };
 
-    // Create a new appointment and add it to the main state in App.jsx
-    setPatients([...patients, object]);
+    // Check whether it is a new record or an update
+    if (patient.id) {
+      // Edit a patient's appointment
+      object.id = patient.id;
+
+      const updatedPatients = patients.map(currentPatient =>
+        currentPatient.id === patient.id ? object : currentPatient
+      );
+
+      setPatients(updatedPatients);
+
+      setPatient({}); // Clear the main state in App.jsx
+    } else {
+      object.id = generateID();
+      // Create a new appointment and add it to the main state in App.jsx
+      setPatients([...patients, object]);
+    }
 
     // Reset form
     setPet('');
@@ -208,6 +222,7 @@ Form.propTypes = {
   patients: PropTypes.array.isRequired,
   setPatients: PropTypes.func.isRequired,
   patient: PropTypes.object.isRequired,
+  setPatient: PropTypes.func.isRequired,
 };
 
 export default Form;
