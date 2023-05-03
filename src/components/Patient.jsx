@@ -1,13 +1,33 @@
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const Patient = ({ patient, setPatient, deletePatient }) => {
   /* Destructuring.
   Extract values from the patient object */
   const { pet, owner, phone, email, date, time, symptoms, id } = patient;
 
+  // SweetAlert2
+  const MySwal = withReactContent(Swal);
+
   // Function that is executed when the user delete a patient's appointment
   const handleDelete = () => {
-    deletePatient(id);
+    // Alert to confirm or cancel to delete a patient's appointment
+    MySwal.fire({
+      title: '¿Estás seguro?',
+      text: '¡No podrás recuperar la cita!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ef4444',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: '¡Sí, eliminar!',
+      cancelButtonText: 'Cancelar',
+    }).then(result => {
+      if (result.isConfirmed) {
+        MySwal.fire('¡Eliminada!', 'La cita ha sido eliminada', 'success');
+        deletePatient(id);
+      }
+    });
   };
 
   return (

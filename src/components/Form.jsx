@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import Alert from './Alert';
 import {
   disableDatesPreviousToCurrentDate,
   formattedDate,
   generateID,
   validDateFormat,
 } from '../helpers';
-import Alert from './Alert';
 
 const Form = ({ patients, setPatients, patient, setPatient }) => {
   // Patient initial state
@@ -20,6 +22,9 @@ const Form = ({ patients, setPatients, patient, setPatient }) => {
 
   // Create state of error alert
   const [error, setError] = useState(false);
+
+  // SweetAlert2
+  const MySwal = withReactContent(Swal);
 
   // Is executed when a state changes or when the component is ready
   useEffect(() => {
@@ -67,13 +72,49 @@ const Form = ({ patients, setPatients, patient, setPatient }) => {
         currentPatient.id === patient.id ? object : currentPatient
       );
 
-      setPatients(updatedPatients);
-
+      // Alert to confirm or cancel a patient's appointment update
+      MySwal.fire({
+        title: '¿Quieres guardar los cambios?',
+        icon: 'warning',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Actualizar',
+        denyButtonText: 'No actualizar',
+        cancelButtonColor: '#3085d6',
+        cancelButtonText: 'Cancelar',
+      }).then(result => {
+        if (result.isConfirmed) {
+          MySwal.fire('¡Cita actualizada!', '', 'success');
+          setPatients(updatedPatients);
+        } else if (result.isDenied) {
+          MySwal.fire('La cita no ha sido modificada', '', 'info');
+        } else {
+          MySwal.fire('¡Cancelado!', '', 'info');
+        }
+      });
       setPatient({}); // Clear the main state in App.jsx
     } else {
-      object.id = generateID();
-      // Create a new appointment and add it to the main state in App.jsx
-      setPatients([...patients, object]);
+      MySwal.fire({
+        title: '¿Quieres crear una nueva cita?',
+        icon: 'warning',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Crear cita',
+        denyButtonText: 'No crear cita',
+        cancelButtonColor: '#3085d6',
+        cancelButtonText: 'Cancelar',
+      }).then(result => {
+        if (result.isConfirmed) {
+          MySwal.fire('¡Cita creada!', '', 'success');
+          // Create a new appointment and add it to the main state in App.jsx
+          object.id = generateID(); // Generate a unique ID before storing it in the state
+          setPatients([...patients, object]);
+        } else if (result.isDenied) {
+          MySwal.fire('La cita no ha sido creada', '', 'info');
+        } else {
+          MySwal.fire('¡Cancelado!', '', 'info');
+        }
+      });
     }
 
     // Reset form
