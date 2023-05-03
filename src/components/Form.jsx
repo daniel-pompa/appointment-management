@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { disableDatesPreviousToCurrentDate } from '../helpers/index';
+import { disableDatesPreviousToCurrentDate, generateID } from '../helpers';
 import Alert from './Alert';
 
 const Form = ({ patients, setPatients }) => {
@@ -37,6 +37,7 @@ const Form = ({ patients, setPatients }) => {
       date,
       time,
       symptoms,
+      id: generateID(),
     };
 
     // Create a new appointment and add it to the main state in App.jsx

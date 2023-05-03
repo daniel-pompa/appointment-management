@@ -1,46 +1,52 @@
-const Patient = () => {
+import PropTypes from 'prop-types';
+
+const Patient = ({ patient }) => {
+  /* Destructuring.
+  Extract values from the patient object */
+  const { pet, owner, phone, email, date, time, symptoms } = patient;
+
   return (
     <div className='bg-white shadow-lg rounded-md mx-3 mb-5 p-4'>
       <p className='text-gray-600 font-bold my-4'>
         Mascota: {''}
-        <span className='font-normal text-gray-500'>Hook</span>
+        <span className='font-normal text-gray-500'>{pet}</span>
       </p>
 
       <p className='text-gray-600 font-bold my-4'>
         Propietario: {''}
-        <span className='font-normal text-gray-500'>Daniel Pompa Pareja</span>
+        <span className='font-normal text-gray-500'>{owner}</span>
       </p>
 
       <p className='text-gray-600  font-bold my-4'>
         Teléfono: {''}
-        <span className='font-normal text-gray-500'>648 11 99 50</span>
+        <span className='font-normal text-gray-500'>{phone}</span>
       </p>
 
       <p className='text-gray-600 font-bold my-4'>
         Correo electrónico: {''}
-        <span className='font-normal text-gray-500'>
-          daniel.pompa@gmail.com
-        </span>
+        <span className='font-normal text-gray-500'>{email}</span>
       </p>
 
       <p className='text-gray-600 font-bold my-4'>
         Fecha: {''}
-        <span className='font-normal text-gray-500'>18/04/2023</span>
+        <span className='font-normal text-gray-500'>{date}</span>
       </p>
 
       <p className='text-gray-600 font-bold my-4'>
         Hora: {''}
-        <span className='font-normal text-gray-500'>17:30</span>
+        <span className='font-normal text-gray-500'>{time}</span>
       </p>
 
       <p className='text-gray-600 font-bold my-4'>
         Síntomas: {''}
-        <span className='font-normal text-gray-500'>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-        </span>
+        <span className='font-normal text-gray-500'>{symptoms}</span>
       </p>
     </div>
   );
+};
+
+Patient.propTypes = {
+  patient: PropTypes.object.isRequired,
 };
 
 export default Patient;
