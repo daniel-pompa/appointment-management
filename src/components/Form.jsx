@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { disableDatesPreviousToCurrentDate, generateID } from '../helpers';
+import {
+  disableDatesPreviousToCurrentDate,
+  formattedDate,
+  generateID,
+} from '../helpers';
 import Alert from './Alert';
 
 const Form = ({ patients, setPatients }) => {
@@ -34,7 +38,7 @@ const Form = ({ patients, setPatients }) => {
       owner,
       phone,
       email,
-      date,
+      date: formattedDate(date), // Change date format
       time,
       symptoms,
       id: generateID(),
