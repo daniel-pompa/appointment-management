@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { disableDatesPreviousToCurrentDate } from '../helpers/index';
+import Alert from './Alert';
 
 const Form = () => {
   // Patient initial state
@@ -11,10 +12,20 @@ const Form = () => {
   const [time, setTime] = useState('');
   const [symptoms, setSymptoms] = useState('');
 
+  // Create state of error alert
+  const [error, setError] = useState(false);
+
   // Function that is executed when the user submits the form
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('Enviando formulario');
+    // Validate form
+    if ([pet, owner, phone, email, date, time, symptoms].includes('')) {
+      setError(true);
+      return;
+    }
+
+    // Remove previous error alert
+    setError(false);
   };
 
   return (
@@ -32,6 +43,8 @@ const Form = () => {
         onSubmit={handleSubmit}
         className='bg-white shadow-lg rounded-md mx-3 p-4'
       >
+        {/* Display alert to validate the form in case of errors */}
+        {error && <Alert message='Todos los campos son obligatorios' />}
         <div className='my-4'>
           <label htmlFor='pet' className='block text-gray-600 font-bold'>
             Nombre Mascota
