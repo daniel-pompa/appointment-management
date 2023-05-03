@@ -27,3 +27,8 @@ export const formattedDate = date => {
 
   return newDate.toLocaleDateString('es-ES', options);
 };
+
+// Required format in the date field of the form when update a patient's appointment
+export const validDateFormat = date => {
+  return date.split('/').reverse().join('-');
+};

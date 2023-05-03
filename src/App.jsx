@@ -8,12 +8,17 @@ function App() {
   It starts as an empty array and is filled with the data entered in the form */
   const [patients, setPatients] = useState([]);
 
+  /* Create the patient state
+  It starts as an empty object
+  When clicking the edit button of Patient.jsx component will populate the object */
+  const [patient, setPatient] = useState({});
+
   return (
     <div className='container mx-auto'>
       <Header />
       <div className='md:flex'>
-        <Form patients={patients} setPatients={setPatients} />
-        <PatientList patients={patients} />
+        <Form patients={patients} setPatients={setPatients} patient={patient} />
+        <PatientList patients={patients} setPatient={setPatient} />
       </div>
     </div>
   );

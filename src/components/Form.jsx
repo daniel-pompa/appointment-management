@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   disableDatesPreviousToCurrentDate,
   formattedDate,
   generateID,
+  validDateFormat,
 } from '../helpers';
 import Alert from './Alert';
 
-const Form = ({ patients, setPatients }) => {
+const Form = ({ patients, setPatients, patient }) => {
   // Patient initial state
   const [pet, setPet] = useState('');
   const [owner, setOwner] = useState('');
@@ -19,6 +20,20 @@ const Form = ({ patients, setPatients }) => {
 
   // Create state of error alert
   const [error, setError] = useState(false);
+
+  // Is executed when a state changes or when the component is ready
+  useEffect(() => {
+    // Check if the patient object is not empty
+    if (Object.keys(patient).length > 0) {
+      setPet(patient.pet);
+      setOwner(patient.owner);
+      setPhone(patient.phone);
+      setEmail(patient.email);
+      setDate(validDateFormat(patient.date)); // Required format in the date field of the form when update a patient's appointment
+      setTime(patient.time);
+      setSymptoms(patient.symptoms);
+    }
+  }, [patient]);
 
   // Function that is executed when the user submits the form
   const handleSubmit = e => {
@@ -182,6 +197,7 @@ const Form = ({ patients, setPatients }) => {
         <input
           type='submit'
           className='w-full text-sm text-white font-bold uppercase hover:bg-sky-400 cursor-pointer transition-all rounded-md mb-3 p-3 main-background-color'
+          value={patient.id ? 'Editar Cita' : 'Crear Cita'}
         />
       </form>
     </div>
@@ -191,6 +207,7 @@ const Form = ({ patients, setPatients }) => {
 Form.propTypes = {
   patients: PropTypes.array.isRequired,
   setPatients: PropTypes.func.isRequired,
+  patient: PropTypes.object.isRequired,
 };
 
 export default Form;
