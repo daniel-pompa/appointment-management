@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { disableDatesPreviousToCurrentDate } from '../helpers/index';
 import Alert from './Alert';
 
-const Form = () => {
+const Form = ({ patients, setPatients }) => {
   // Patient initial state
   const [pet, setPet] = useState('');
   const [owner, setOwner] = useState('');
@@ -26,6 +27,29 @@ const Form = () => {
 
     // Remove previous error alert
     setError(false);
+
+    // Create patient object
+    const object = {
+      pet,
+      owner,
+      phone,
+      email,
+      date,
+      time,
+      symptoms,
+    };
+
+    // Create a new appointment and add it to the main state in App.jsx
+    setPatients([...patients, object]);
+
+    // Reset form
+    setPet('');
+    setOwner('');
+    setPhone('');
+    setEmail('');
+    setDate('');
+    setTime('');
+    setSymptoms('');
   };
 
   return (
@@ -157,6 +181,11 @@ const Form = () => {
       </form>
     </div>
   );
+};
+
+Form.propTypes = {
+  patients: PropTypes.array.isRequired,
+  setPatients: PropTypes.func.isRequired,
 };
 
 export default Form;
