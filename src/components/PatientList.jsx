@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Patient from './Patient';
 
-const PatientList = ({ patients, setPatient }) => {
+const PatientList = ({ patients, setPatient, deletePatient }) => {
   return (
     <div className='md:w-1/2 lg:w-3/5 my-8 md:h-screen custom-scrollbar custom-scrollbar-firefox'>
       <div className='sticky top-0 bg-gray-100'>
@@ -30,7 +30,12 @@ const PatientList = ({ patients, setPatient }) => {
 
       {/* Iterate patient array and display in patient list */}
       {patients.map(patient => (
-        <Patient key={patient.id} patient={patient} setPatient={setPatient} />
+        <Patient
+          key={patient.id}
+          patient={patient}
+          setPatient={setPatient}
+          deletePatient={deletePatient}
+        />
       ))}
     </div>
   );
@@ -39,6 +44,7 @@ const PatientList = ({ patients, setPatient }) => {
 PatientList.propTypes = {
   patients: PropTypes.array.isRequired,
   setPatient: PropTypes.func.isRequired,
+  deletePatient: PropTypes.func.isRequired,
 };
 
 export default PatientList;

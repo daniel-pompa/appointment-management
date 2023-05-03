@@ -1,9 +1,14 @@
 import PropTypes from 'prop-types';
 
-const Patient = ({ patient, setPatient }) => {
+const Patient = ({ patient, setPatient, deletePatient }) => {
   /* Destructuring.
   Extract values from the patient object */
-  const { pet, owner, phone, email, date, time, symptoms } = patient;
+  const { pet, owner, phone, email, date, time, symptoms, id } = patient;
+
+  // Function that is executed when the user delete a patient's appointment
+  const handleDelete = () => {
+    deletePatient(id);
+  };
 
   return (
     <div className='bg-white shadow-lg rounded-md mx-3 mb-5 p-4'>
@@ -54,6 +59,7 @@ const Patient = ({ patient, setPatient }) => {
         <button
           type='button'
           className='text-white text-sm font-bold uppercase bg-red-500 hover:bg-red-600 py-2 rounded-md transition-all cursor-pointer w-32'
+          onClick={handleDelete}
         >
           Eliminar
         </button>
@@ -65,6 +71,7 @@ const Patient = ({ patient, setPatient }) => {
 Patient.propTypes = {
   patient: PropTypes.object.isRequired,
   setPatient: PropTypes.func.isRequired,
+  deletePatient: PropTypes.func.isRequired,
 };
 
 export default Patient;

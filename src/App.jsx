@@ -13,6 +13,12 @@ function App() {
   When clicking the edit button of Patient.jsx component will populate the object */
   const [patient, setPatient] = useState({});
 
+  // Function to delete a patient's appointment
+  const deletePatient = id => {
+    const updatedPatients = patients.filter(patient => patient.id !== id);
+    setPatients(updatedPatients);
+  };
+
   return (
     <div className='container mx-auto'>
       <Header />
@@ -23,7 +29,11 @@ function App() {
           patient={patient}
           setPatient={setPatient}
         />
-        <PatientList patients={patients} setPatient={setPatient} />
+        <PatientList
+          patients={patients}
+          setPatient={setPatient}
+          deletePatient={deletePatient}
+        />
       </div>
     </div>
   );
