@@ -52,6 +52,10 @@ In the project directory run the following command
 npm run dev
 ```
 
+## Deploy status
+
+[![Deploy Status](https://img.shields.io/badge/netlify-success-brightgreen)](https://vet-clinic-react-vite.netlify.app/)
+
 ## License
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
