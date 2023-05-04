@@ -129,10 +129,10 @@ const Form = ({ patients, setPatients, patient, setPatient }) => {
 
   return (
     <div className='md:w-1/2 lg:w-2/5 my-8'>
-      <h2 className='text-2xl text-gray-600 text-center font-black uppercase'>
+      <h2 className='text-2xl text-gray-600 dark:text-slate-300 text-center font-black uppercase'>
         Citas Pacientes
       </h2>
-      <p className='text-sm text-center text-gray-600 font-bold uppercase mt-2 pb-4'>
+      <p className='text-sm text-center text-gray-600 dark:text-slate-300 font-bold uppercase mt-2 pb-4'>
         Formulario nuevas {''}
         <span className='main-color'>citas</span>
       </p>
@@ -140,40 +140,49 @@ const Form = ({ patients, setPatients, patient, setPatient }) => {
       {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className='bg-white shadow-lg rounded-md mx-3 p-4'
+        className='bg-white dark:bg-slate-700 shadow-lg rounded-md mx-3 p-4'
       >
         {/* Display alert to validate the form in case of errors */}
         {error && <Alert message='Todos los campos son obligatorios' />}
         <div className='my-4'>
-          <label htmlFor='pet' className='block text-gray-600 font-bold'>
+          <label
+            htmlFor='pet'
+            className='block text-gray-600 dark:text-slate-300 font-bold'
+          >
             Nombre Mascota
           </label>
           <input
             id='pet'
             type='text'
             placeholder='Nombre de la mascota'
-            className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            className='w-full text-gray-500 dark:bg-slate-600 dark:text-slate-300 border-2 p-1 mt-1 rounded-md'
             value={pet}
             onChange={e => setPet(e.target.value)}
           />
         </div>
 
         <div className='my-4'>
-          <label htmlFor='owner' className='block text-gray-600 font-bold'>
+          <label
+            htmlFor='owner'
+            className='block text-gray-600 dark:text-slate-300 font-bold'
+          >
             Nombre Propietario
           </label>
           <input
             id='owner'
             type='text'
             placeholder='Nombre del propietario'
-            className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            className='w-full text-gray-500 dark:bg-slate-600 dark:text-slate-300 border-2 p-1 mt-1 rounded-md'
             value={owner}
             onChange={e => setOwner(e.target.value)}
           />
         </div>
 
         <div className='my-4'>
-          <label htmlFor='phone' className='block text-gray-600 font-bold'>
+          <label
+            htmlFor='phone'
+            className='block text-gray-600 dark:text-slate-300 font-bold'
+          >
             Teléfono
           </label>
           <input
@@ -181,7 +190,7 @@ const Form = ({ patients, setPatients, patient, setPatient }) => {
             type='tel'
             placeholder='Teléfono de contacto'
             pattern='[0-9]{3} [0-9]{2} [0-9]{2} [0-9]{2}'
-            className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            className='w-full text-gray-500 dark:bg-slate-600 dark:text-slate-300 border-2 p-1 mt-1 rounded-md'
             value={phone}
             onChange={e => setPhone(e.target.value)}
           />
@@ -191,35 +200,44 @@ const Form = ({ patients, setPatients, patient, setPatient }) => {
         </div>
 
         <div className='my-4'>
-          <label htmlFor='email' className='block text-gray-600 font-bold'>
+          <label
+            htmlFor='email'
+            className='block text-gray-600 dark:text-slate-300 font-bold'
+          >
             Correo electrónico
           </label>
           <input
             id='email'
             type='email'
             placeholder='Correo electrónico de contacto'
-            className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            className='w-full text-gray-500 dark:bg-slate-600 dark:text-slate-300 border-2 p-1 mt-1 rounded-md'
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
         </div>
 
         <div className='my-4'>
-          <label htmlFor='date' className='block text-gray-600 font-bold'>
+          <label
+            htmlFor='date'
+            className='block text-gray-600 dark:text-slate-300 font-bold'
+          >
             Fecha
           </label>
           <input
             id='date'
             type='date'
             min={disableDatesPreviousToCurrentDate()}
-            className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            className='w-full text-gray-500 dark:bg-slate-600 dark:text-slate-300 border-2 p-1 mt-1 rounded-md'
             value={date}
             onChange={e => setDate(e.target.value)}
           />
         </div>
 
         <div className='my-4'>
-          <label htmlFor='time' className='block text-gray-600 font-bold'>
+          <label
+            htmlFor='time'
+            className='block text-gray-600 dark:text-slate-300 font-bold'
+          >
             Hora
           </label>
           <input
@@ -227,7 +245,7 @@ const Form = ({ patients, setPatients, patient, setPatient }) => {
             type='time'
             min='09:00'
             max='18:00'
-            className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            className='w-full text-gray-500 dark:bg-slate-600 dark:text-slate-300 border-2 p-1 mt-1 rounded-md'
             value={time}
             onChange={e => setTime(e.target.value)}
           />
@@ -237,13 +255,16 @@ const Form = ({ patients, setPatients, patient, setPatient }) => {
         </div>
 
         <div className='my-4'>
-          <label htmlFor='symptoms' className='block text-gray-600 font-bold'>
+          <label
+            htmlFor='symptoms'
+            className='block text-gray-600 dark:text-slate-300 font-bold'
+          >
             Síntomas
           </label>
           <textarea
             id='symptoms'
             placeholder='Descripción de los síntomas'
-            className='w-full text-gray-500 border-2 p-1 mt-1 rounded-md'
+            className='w-full text-gray-500 dark:bg-slate-600 dark:text-slate-300 border-2 p-1 mt-1 rounded-md'
             value={symptoms}
             onChange={e => setSymptoms(e.target.value)}
           />

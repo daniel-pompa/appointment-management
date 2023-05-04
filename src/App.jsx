@@ -5,7 +5,7 @@ import PatientList from './components/PatientList';
 
 function App() {
   /* Create state of patients
-  Starts with patients stored in localStorage or with an empty array and will be filled with the data entered in the form */
+  It starts with patients stored in localStorage or with an empty array and will be filled with the data entered in the form */
   const [patients, setPatients] = useState(
     JSON.parse(localStorage.getItem('patients')) || []
   );
@@ -14,6 +14,26 @@ function App() {
   It starts as an empty object
   When clicking the edit button of Patient.jsx component will populate the object */
   const [patient, setPatient] = useState({});
+
+  // Create theme state
+  const [theme, setTheme] = useState('');
+
+  // Theme useEffect
+  useEffect(() => {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
 
   // Patients useEffect
   useEffect(() => {
@@ -26,9 +46,14 @@ function App() {
     setPatients(updatedPatients);
   };
 
+  // Function to switch to dark or light mode
+  const handleThemeSwitch = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   return (
     <div className='container mx-auto'>
-      <Header />
+      <Header theme={theme} handleThemeSwitch={handleThemeSwitch} />
       <div className='md:flex'>
         <Form
           patients={patients}

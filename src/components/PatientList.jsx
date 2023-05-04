@@ -4,23 +4,23 @@ import Patient from './Patient';
 const PatientList = ({ patients, setPatient, deletePatient }) => {
   return (
     <div className='md:w-1/2 lg:w-3/5 my-8 md:h-screen custom-scrollbar custom-scrollbar-firefox'>
-      <div className='sticky top-0 bg-gray-100'>
+      <div className='sticky top-0 bg-gray-100 dark:bg-slate-800'>
         {patients && patients.length ? (
           <>
-            <h2 className='text-2xl text-gray-600 text-center font-black uppercase'>
+            <h2 className='text-2xl text-gray-600 dark:text-slate-300 text-center font-black uppercase'>
               Lista Pacientes
             </h2>
-            <p className='text-sm text-center text-gray-600 font-bold uppercase mt-2 pb-4'>
+            <p className='text-sm text-center text-gray-600 dark:text-slate-300 font-bold uppercase mt-2 pb-4'>
               Administrar citas {''}
               <span className='main-color'>Pacientes</span>
             </p>
           </>
         ) : (
           <>
-            <h2 className='text-2xl text-gray-600 text-center font-black uppercase'>
+            <h2 className='text-2xl text-gray-600 dark:text-slate-300 text-center font-black uppercase'>
               No hay citas
             </h2>
-            <p className='text-sm text-center text-gray-600 font-bold uppercase mt-2'>
+            <p className='text-sm text-center text-gray-600 dark:text-slate-300 font-bold uppercase mt-2'>
               Crea una nueva {''}
               <span className='main-color'>Cita</span>
             </p>

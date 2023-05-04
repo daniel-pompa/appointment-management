@@ -31,40 +31,54 @@ const Patient = ({ patient, setPatient, deletePatient }) => {
   };
 
   return (
-    <div className='bg-white shadow-lg rounded-md mx-3 mb-5 p-4'>
-      <p className='text-gray-600 font-bold my-4'>
+    <div className='bg-white dark:bg-slate-700 shadow-lg rounded-md mx-3 mb-5 p-4'>
+      <p className='text-gray-600 dark:text-slate-300 font-bold my-4'>
         Mascota: {''}
-        <span className='font-normal text-gray-500'>{pet}</span>
+        <span className='font-normal text-gray-500 dark:text-slate-300'>
+          {pet}
+        </span>
       </p>
 
-      <p className='text-gray-600 font-bold my-4'>
+      <p className='text-gray-600 dark:text-slate-300 font-bold my-4'>
         Propietario: {''}
-        <span className='font-normal text-gray-500'>{owner}</span>
+        <span className='font-normal text-gray-500 dark:text-slate-300'>
+          {owner}
+        </span>
       </p>
 
-      <p className='text-gray-600  font-bold my-4'>
+      <p className='text-gray-600 dark:text-slate-300 font-bold my-4'>
         Teléfono: {''}
-        <span className='font-normal text-gray-500'>{phone}</span>
+        <span className='font-normal text-gray-500 dark:text-slate-300'>
+          {phone}
+        </span>
       </p>
 
-      <p className='text-gray-600 font-bold my-4'>
+      <p className='text-gray-600 dark:text-slate-300 font-bold my-4'>
         Correo electrónico: {''}
-        <span className='font-normal text-gray-500'>{email}</span>
+        <span className='font-normal text-gray-500 dark:text-slate-300'>
+          {email}
+        </span>
       </p>
 
-      <p className='text-gray-600 font-bold my-4'>
+      <p className='text-gray-600 dark:text-slate-300 font-bold my-4'>
         Fecha: {''}
-        <span className='font-normal text-gray-500'>{date}</span>
+        <span className='font-normal text-gray-500 dark:text-slate-300'>
+          {date}
+        </span>
       </p>
 
-      <p className='text-gray-600 font-bold my-4'>
+      <p className='text-gray-600 dark:text-slate-300 font-bold my-4'>
         Hora: {''}
-        <span className='font-normal text-gray-500'>{time}</span>
+        <span className='font-normal text-gray-500 dark:text-slate-300'>
+          {time}
+        </span>
       </p>
 
-      <p className='text-gray-600 font-bold my-4'>
+      <p className='text-gray-600 dark:text-slate-300 font-bold my-4'>
         Síntomas: {''}
-        <span className='font-normal text-gray-500'>{symptoms}</span>
+        <span className='font-normal text-gray-500 dark:text-slate-300'>
+          {symptoms}
+        </span>
       </p>
 
       {/* Buttons to edit or delete a patient's appointment */}
